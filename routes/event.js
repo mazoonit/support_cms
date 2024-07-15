@@ -5,7 +5,7 @@ const event_service = require('../lib/events')
 
 router.get("/", async (req, res, next) => {
   try {
-    let events = prisma.events.find_many({});
+    let events = prisma.event.findMany({});
     res.send(events);
   }
   catch (e) {
@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    let event = prisma.events.find_one({where: {id: req.params.id}});
+    let event = prisma.event.find_one({where: {id: req.params.id}});
     if(!event){
       throw new Error("Not Found");
     }
