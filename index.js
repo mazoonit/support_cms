@@ -13,8 +13,8 @@ app.set('views', __dirname + '/views');
 
 
 app.use('/api/auth', authRoutes)
-app.use('/api/event', [eventRoutes])
-app.use('/api/user', [userRoutes])
+app.use('/api/event', [verifyToken, eventRoutes])
+app.use('/api/user', [verifyToken, userRoutes])
 app.get('/login', (req,res,next)=>{
   res.render("login.ejs")
 })
