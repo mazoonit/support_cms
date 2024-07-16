@@ -1,7 +1,45 @@
 const express = require("express");
 const router = express.Router();
 const prisma = require('../lib/prisma');
-const event_service = require('../lib/events')
+const path = require('path');
+const event_service = require('../lib/events');
+
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9) + path.extname(file.originalname)
+    const fileName = file.fieldname + '-' + uniqueSuffix;
+    req.fileName = fileName;
+    cb(null, fileName)
+  }
+})
+
+
+const upload = multer({ storage: storage });
+
+
+router.post("/upload", upload.single("file"), async (req, res, next)=>{
+
+    try{
+    let {eventId} = req.body;
+    if(!eventId){
+      throw new Error("eventId is missing!");
+    }
+    eventId = parseInt(eventId);
+    await prisma.event.findUniqueOrThrow({where: {id: eventId}});
+    await prisma.event.update({where:{id: eventId}, data:{content_path: req.fileName}});
+    res.json({ message: req.fileName });
+    }
+    catch(e){
+      next(e);
+    } 
+
+});
+
+
 
 router.get("/", async (req, res, next) => {
   try {
