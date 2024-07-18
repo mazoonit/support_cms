@@ -16,11 +16,12 @@ model Event {
   subtitle String
   description String
   body String
-  speakers String
   date DateTime
   type String
   image_path String?
   content_path String?
+  speakers Speaker[]
+  event_speakers EventSpeaker[]
 }
 
 model User {
@@ -28,4 +29,21 @@ model User {
   user_name String @unique
   password String
   role String
+}
+
+model Speaker {
+  id Int @id @default(autoincrement())
+  role String
+  profile_image_path String @default("/uploads/pp.jpg")
+  events Event[]
+  event_speakers EventSpeaker[]
+}
+
+model EventSpeaker {
+  id Int @id @default(autoincrement())
+  event_id Int
+  event Event @relation(fields: [event_id], references: [id])
+  speaker_id Int
+  speaker Speaker @relation(fields: [speaker_id], references: [id])
+
 }

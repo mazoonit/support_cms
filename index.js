@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000
 const eventRoutes = require('./routes/event.js');
+const speakerRoutes = require('./routes/speaker.js');
 const authRoutes = require('./routes/auth.js');
 const userRoutes = require('./routes/user.js');
 const {verifyToken} = require('./lib/auth.js');
@@ -14,6 +15,7 @@ app.set('views', __dirname + '/views');
 
 app.use('/api/auth', authRoutes)
 app.use('/api/event', [verifyToken, eventRoutes])
+app.use('/api/speaker', [verifyToken, speakerRoutes])
 app.use('/api/user', [verifyToken, userRoutes])
 app.get('/login', (req,res,next)=>{
   res.render("login.ejs")
