@@ -53,7 +53,7 @@ router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
 
 router.get("/", async (req, res, next) => {
   try {
-    let events = await prisma.event.findMany({include:{eventSpeakers: {include: {speaker: true}}}});
+    let events = await prisma.event.findMany({include:{event_speakers: {include: {speaker: true}}}});
     let eventSpeakers = await prisma.eventSpeaker.findMany({});
     res.send(events);
   }
@@ -64,7 +64,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    let event = await prisma.event.findUniqueOrThrow({include:{eventSpeakers: {include: {speaker: true}}}});
+    let event = await prisma.event.findUniqueOrThrow({include:{event_speakers: {include: {speaker: true}}}});
     res.send(event);
   }
   catch (e) {

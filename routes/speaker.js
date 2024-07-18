@@ -35,7 +35,7 @@ router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
     }
     speaker_id = parseInt(speaker_id);
     await prisma.speaker.findUniqueOrThrow({where: {id: speaker_id}});
-    await prisma.speaker.update({where:{id: speaker_id}, data:{profile_image_path: req.fileName}});
+    await prisma.speaker.update({where:{id: speaker_id}, data:{image_path: req.fileName}});
     res.json({ message: req.fileName });
   }
   catch(e){
