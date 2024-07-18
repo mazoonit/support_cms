@@ -21,7 +21,7 @@ model Event {
   image_path String?
   content_path String?
   speakers Speaker[]
-  event_speakers EventSpeaker[]
+  eventSpeakers EventSpeaker[]
 }
 
 model User {
@@ -33,10 +33,11 @@ model User {
 
 model Speaker {
   id Int @id @default(autoincrement())
+  name String
   role String
   profile_image_path String @default("/uploads/pp.jpg")
   events Event[]
-  event_speakers EventSpeaker[]
+  eventSpeakers EventSpeaker[]
 }
 
 model EventSpeaker {

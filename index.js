@@ -14,8 +14,8 @@ app.set('views', __dirname + '/views');
 
 
 app.use('/api/auth', authRoutes)
-app.use('/api/event', [verifyToken, eventRoutes])
-app.use('/api/speaker', [verifyToken, speakerRoutes])
+app.use('/api/event', [eventRoutes])
+app.use('/api/speaker', [speakerRoutes])
 app.use('/api/user', [verifyToken, userRoutes])
 app.get('/login', (req,res,next)=>{
   res.render("login.ejs")
@@ -25,6 +25,7 @@ app.get('/home', (req,res,next)=>{
 })
 
 app.use((err, req, res, next) => {
+    console.log(err);
     if(err?.message == 'Not Authorized'){
       return res.sendStatus(401);
     }

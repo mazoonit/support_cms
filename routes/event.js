@@ -17,22 +17,22 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage });
 
-async function pointEventToContent(fileName, eventId, prop){
-    if(!eventId){
-      throw new Error("eventId is missing!");
+async function pointEventToContent(fileName, event_id, prop){
+    if(!event_id){
+      throw new Error("event_id is missing!");
     }
-    eventId = parseInt(eventId);
-    await prisma.event.findUniqueOrThrow({where: {id: eventId}});
+    event_id = parseInt(event_id);
+    await prisma.event.findUniqueOrThrow({where: {id: event_id}});
     let obj = {}
     obj[prop] = fileName;
-    await prisma.event.update({where:{id: eventId}, data:obj});
+    await prisma.event.update({where:{id: event_id}, data:obj});
 
 }
 
 router.post("/upload_content", upload.single("file"), async (req, res, next)=>{
     try{
-      let {eventId} = req.body;
-      await pointEventToContent(req.fileName, eventId, 'content_path')
+      let {event_id} = req.body;
+      await pointEventToContent(req.fileName, event_id, 'content_path')
       res.json({ message: req.fileName });
     }
     catch(e){
@@ -42,8 +42,8 @@ router.post("/upload_content", upload.single("file"), async (req, res, next)=>{
 
 router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
   try{
-    let {eventId} = req.body;
-    await pointEventToContent(req.fileName, eventId, 'image_path')
+    let {event_id} = req.body;
+    await pointEventToContent(req.fileName, event_id, 'image_path')
     res.json({ message: req.fileName });
   }
   catch(e){
@@ -53,7 +53,8 @@ router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
 
 router.get("/", async (req, res, next) => {
   try {
-    let events = await prisma.event.findMany({});
+    let events = await prisma.event.findMany({include:{eventSpeakers: {include: {speaker: true}}}});
+    let eventSpeakers = await prisma.eventSpeaker.findMany({});
     res.send(events);
   }
   catch (e) {
@@ -63,7 +64,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    let event = await prisma.event.findUniqueOrThrow({where: {id: parseInt(req.params.id)}});
+    let event = await prisma.event.findUniqueOrThrow({include:{eventSpeakers: {include: {speaker: true}}}});
     res.send(event);
   }
   catch (e) {
