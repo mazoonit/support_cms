@@ -54,10 +54,10 @@ router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
 router.get("/", async (req, res, next) => {
   try {
     let params = req.query;
-    if(params.upcomingFlag){
+    if(params.upcoming_flag){
       params.start_date = new Date();
     }
-    if(params.pastFlag){
+    if(params.past_flag){
       params.end_date = new Date();
     }
     let events = await prisma.event.findMany({
