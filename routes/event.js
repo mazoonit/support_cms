@@ -53,8 +53,24 @@ router.post("/upload_image", upload.single("file"), async (req, res, next)=>{
 
 router.get("/", async (req, res, next) => {
   try {
-    let events = await prisma.event.findMany({include:{event_speakers: {include: {speaker: true}}}});
-    let eventSpeakers = await prisma.eventSpeaker.findMany({});
+    let params = req.query;
+    if(params.upcomingFlag){
+      params.start_date = new Date();
+    }
+    if(params.pastFlag){
+      params.end_date = new Date();
+    }
+    let events = await prisma.event.findMany({
+      where: {
+        title: {contains: params.title},
+        type: params.type,
+        date: {
+            gte: params.start_date ? new Date(params.start_date): undefined,
+            lt: params.end_date ? new Date(params.end_date) : undefined
+        }
+      },
+      include:{event_speakers: {include: {speaker: true}}}
+    });
     res.send(events);
   }
   catch (e) {

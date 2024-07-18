@@ -46,5 +46,4 @@ model EventSpeaker {
   event Event @relation(fields: [event_id], references: [id])
   speaker_id Int
   speaker Speaker @relation(fields: [speaker_id], references: [id])
-
 }
