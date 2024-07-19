@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!-- Page Title  -->
+    <title>Add Page | CMS | DashLite Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="assets/css/dashlite.css">
+    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css">
+
+    <style>
+        .has-apps-sidebar .nk-sidebar {
+            left: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
+    <div class="nk-app-root">
+        <!-- main @s -->
+        <div class="nk-main ">
+            <!-- wrap @s -->
+            <div class="nk-wrap ">
+                
+                   <!-- main header @s -->
+                   <%- include('./partials/header.ejs') %>
+                   <!-- main header @e -->
+
+                <%- include('./partials/sidebar.ejs') %>
+                
+                <!-- content @s -->
+
+                <div class="nk-content">
+                    <div class="container-fluid">
+                        <div class="nk-content-inner">
+                            <div class="nk-content-body">
+                                <div class="nk-block-head nk-block-head-sm">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h3 class="nk-block-title page-title">Add Event</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nk-block">
+                                    <div class="row g-gs">
+                                        <div class="col-lg-12">
+                                            <div class="card card-bordered">
+                                                <div class="card-inner">
+                                                    <form id="add-event-form" onsubmit="add_event(event)">
+                                                        <div class="row g-gs">
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="title">Title</label>
+                                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="subtitle">Subtitle</label>
+                                                                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitle">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Content</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="summernote-lg summernote-minimal" id="summernote">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="description">Description</label>
+                                                                    <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Featured Image</label>
+                                                                    <div class="upload-zone">
+                                                                        <div class="dz-message" data-dz-message>
+                                                                            <span class="dz-message-text">Drag and drop file</span>
+                                                                            <span class="dz-message-or">or</span>
+                                                                            <button class="btn btn-primary">SELECT</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                         
+                                                            <div class="col-lg-12 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="addDate">Date</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="form-icon form-icon-right">
+                                                                            <em class="icon ni ni-calendar"></em>
+                                                                        </div>
+                                                                        <input type="text" class="form-control date-picker" id="addDate" name="date" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label" for="time">Time</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <div class="form-icon form-icon-right">
+                                                                            <em class="icon ni ni-clock"></em>
+                                                                        </div>
+                                                                        <input type="text" class="form-control time-picker" id="time" name="time" placeholder="Time Picker">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Select Type</label>
+                                                                    <div class="form-control-wrap">
+                                                                        <select class="form-select js-select2" name="type" data-placeholder="Type">
+                                                                            <option value="PODCAST">PODCAST</option>
+                                                                            <option value="WEBINAR">WEBINAR</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12">
+                                                                <div class="card card-bordered">
+                                                                    <div class="card-inner border-bottom">
+                                                                        <div class="card-title-group">
+                                                                            <div class="card-title">
+                                                                                <h6 class="title">Speakers</h6>
+                                                                            </div>
+                                                                            <div class="card-tools">
+                                                                                <!-- <ul class="card-tools-nav"> -->
+                                                                                    <!-- <li class="nk-block-tools-opt d-none d-sm-block"> -->
+                                                                                        <a data-bs-toggle="modal" href="#addMedia" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add Project</span></a>
+                                                                                    <!-- </li> -->
+                                                                                    <!-- <li><a href="#"><span>Cancel</span></a></li> -->
+                                                                                    <!-- <li class="active"><a href="#"><span>All</span></a></li> -->
+                                                                                <!-- </ul> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ul class="nk-activity" id="--js-speakers-list">
+                                                                        <li class="nk-activity-item">
+                                                                            <div class="nk-activity-media user-avatar bg-success"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                                                                            <div class="nk-activity-data">
+                                                                                <div class="label">Keith Jensen requested to Widthdrawl.</div>
+                                                                                <span class="time">2 hours ago</span>
+                                                                            </div>
+                                    
+                                                                            <div class="drodown ms-auto">
+                                                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                        <li><a href="html/project-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="nk-activity-item">
+                                                                            <div class="nk-activity-media user-avatar bg-warning">HS</div>
+                                                                            <div class="nk-activity-data">
+                                                                                <div class="label">Harry Simpson placed a Order.</div>
+                                                                                <span class="time">2 hours ago</span>
+                                                                            </div>
+                                                                            <div class="drodown ms-auto">
+                                                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                        <li><a href="html/project-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="nk-activity-item">
+                                                                            <div class="nk-activity-media user-avatar bg-azure">SM</div>
+                                                                            <div class="nk-activity-data">
+                                                                                <div class="label">Stephanie Marshall got a huge bonus.</div>
+                                                                                <span class="time">2 hours ago</span>
+                                                                            </div>
+                                                                            <div class="drodown ms-auto">
+                                                                                <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                        <li><a href="html/project-kanban.html"><em class="icon ni ni-eye"></em><span>View Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Project</span></a></li>
+                                                                                        <li><a href="#"><em class="icon ni ni-check-round-cut"></em><span>Mark As Done</span></a></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="nk-activity-item">
+                                                                            <div class="nk-activity-media user-avatar bg-purple"><img src="./images/avatar/d-sm.jpg" alt=""></div>
+                                                                            <div class="nk-activity-data">
+                                                                                <div class="label">Nicholas Carr deposited funds.</div>
+                                                                                <span class="time">2 hours ago</span>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="nk-activity-item">
+                                                                            <div class="nk-activity-media user-avatar bg-pink">TM</div>
+                                                                            <div class="nk-activity-data">
+                                                                                <div class="label">Timothy Moreno placed a Order.</div>
+                                                                                <span class="time">2 hours ago</span>
+                                                                            </div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div><!-- .card -->
+                                                            </div>
+                
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 mt-1">
+                                                                        <li>
+                                                                            <button type="submit" class="btn btn-primary">Publish Page</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- content @e -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- main @e -->
+        <!-- <div class="toast-container position-fixed top-0 end-0 p-3">    
+            <div class="toast show">     
+                <div class="toast-header">        
+                    <strong class="me-auto text-primary">Bootstrap</strong>        
+                    <small>11 mins ago</small>        
+                    <button type="button" class="close" data-dismiss="toast" aria-label="Close">          
+                        <em class="icon ni ni-cross-sm"></em>        
+                    </button>      
+                </div>      
+                <div class="toast-body">Hello, world! This is a toast message.</div>    
+            </div>
+        </div> -->
+    </div>
+    <!-- app-root @e -->
+    <!-- select region modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="region">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-md">
+                    <h5 class="title mb-4">Select Your Country</h5>
+                    <div class="nk-country-region">
+                        <ul class="country-list text-center gy-2">
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/arg.png" alt="" class="country-flag">
+                                    <span class="country-name">Argentina</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/aus.png" alt="" class="country-flag">
+                                    <span class="country-name">Australia</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/bangladesh.png" alt="" class="country-flag">
+                                    <span class="country-name">Bangladesh</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/canada.png" alt="" class="country-flag">
+                                    <span class="country-name">Canada <small>(English)</small></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/china.png" alt="" class="country-flag">
+                                    <span class="country-name">Centrafricaine</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/china.png" alt="" class="country-flag">
+                                    <span class="country-name">China</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/french.png" alt="" class="country-flag">
+                                    <span class="country-name">France</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/germany.png" alt="" class="country-flag">
+                                    <span class="country-name">Germany</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/iran.png" alt="" class="country-flag">
+                                    <span class="country-name">Iran</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/italy.png" alt="" class="country-flag">
+                                    <span class="country-name">Italy</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/mexico.png" alt="" class="country-flag">
+                                    <span class="country-name">México</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/philipine.png" alt="" class="country-flag">
+                                    <span class="country-name">Philippines</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/portugal.png" alt="" class="country-flag">
+                                    <span class="country-name">Portugal</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/s-africa.png" alt="" class="country-flag">
+                                    <span class="country-name">South Africa</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/spanish.png" alt="" class="country-flag">
+                                    <span class="country-name">Spain</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/switzerland.png" alt="" class="country-flag">
+                                    <span class="country-name">Switzerland</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/uk.png" alt="" class="country-flag">
+                                    <span class="country-name">United Kingdom</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="country-item">
+                                    <img src="images/flags/english.png" alt="" class="country-flag">
+                                    <span class="country-name">United State</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- .modal-content -->
+        </div><!-- .modla-dialog -->
+    </div><!-- .modal -->
+
+        <!-- Add Page-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="addMedia">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                    <div class="modal-body modal-body-md">
+                        <h5 class="modal-title">Add Speaker</h5>
+                        <form id="--js-speaker-form" onsubmit="addSpeaker(event)" class="mt-4">
+                            <div class="row g-gs">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="speaker_name">Name</label>
+                                        <input type="text" class="form-control" id="speaker_name" name="name" placeholder="Name">
+                                    </div>
+                                </div><!-- .col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="role">Role</label>
+                                        <input type="text" class="form-control" id="role" placeholder="Role" name="role">
+                                    </div>
+                                </div><!-- .col -->
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="category">Featured Image</label>
+                                        <div class="upload-zone small bg-lighter my-2">
+                                            <div class="dz-message">
+                                                <span class="dz-message-text">Drag and drop file</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Update</button>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="link link-light" data-bs-dismiss="modal">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- .col -->
+                            </div><!-- .row -->
+                        </form>
+                    </div><!-- .modal-body -->
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div><!-- .modal -->
+        <!-- Edit Page-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="editMedia">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                    <div class="modal-body modal-body-md">
+                        <h5 class="modal-title">Edit Media</h5>
+                        <form action="#" class="mt-4">
+                            <div class="row g-gs">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="editName">Name</label>
+                                        <input type="text" class="form-control" id="editName" placeholder="Plant" value="Plant">
+                                    </div>
+                                </div><!-- .col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="editAlt">Alter Text</label>
+                                        <input type="text" class="form-control" id="editAlt" placeholder="Feature Image" value="Feature Image">
+                                    </div>
+                                </div><!-- .col -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="category">Featured Image</label>
+                                        <div class="form-control-wrap">
+                                            <img src="./images/cms/sq/small-a.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="category">Featured Image</label>
+                                        <div class="upload-zone small bg-lighter my-2">
+                                            <div class="dz-message">
+                                                <span class="dz-message-text">Drag and drop file</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                        <li>
+                                            <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Update</button>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="link link-light" data-bs-dismiss="modal">Cancel</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- .col -->
+                            </div><!-- .row -->
+                        </form>
+                    </div><!-- .modal-body -->
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div><!-- .modal -->
+    <!-- <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">   -->
+       
+    <!-- </div> -->
+
+    <!-- JavaScript -->
+    <script src="assets/js/bundle.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <link rel="stylesheet" href="assets/css/editors/summernote.css">
+    <script src="assets/js/libs/editors/summernote.js"></script>
+    <script src="assets/js/editors.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+    
+        NioApp.Dropzone = function(elm, opt) {
+            if ($(elm).exists()) {
+                $(elm).each(function() {
+                    var maxFiles = $(elm).data('max-files') || 5;
+                    var maxFileSize = $(elm).data('max-file-size') || 256;
+                    var acceptedFiles = $(elm).data('accepted-files') || null;
+                    var def = {
+                        url: "/add-page",
+                        maxFiles: maxFiles,
+                        maxFilesize: maxFileSize,
+                        acceptedFiles: acceptedFiles,
+                        autoProcessQueue: false,
+                        uploadMultiple: true,
+                        parallelUploads: maxFiles,
+                        addRemoveLinks: true,
+                        paramName: "files", // Ensure Dropzone uses the correct field name
+                        init: function() {
+                            var myDropzone = this;
+    
+                            // Handle form submission
+                            $('#event-add-form').submit(function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                add_event(e , myDropzone)
+                                
+                                
+                            });
+
+                            // sending images along with the form data
+    
+                            // myDropzone.on("sendingmultiple", function(files, xhr, formData) {
+                            //     // Append all form inputs to the formData object
+                            //     var data = $('#addPageForm').serializeArray();
+                            //     console.log(data)
+                            //     $.each(data, function(key, el) {
+                            //         console.log(el.name, el.value)
+                            //         formData.append(el.name, el.value);
+                            //     });
+                            // });
+
+                            myDropzone.on("sendingmultiple", function(files, xhr, formData) {
+                                // Create a files array
+                                let filesArray = [];
+
+                                // Iterate through the files and add them to the filesArray
+                                files.forEach(function(file) {
+                                    filesArray.push(file);
+                                });
+
+                                // Append the files array to the formData object
+                                formData.append('files', JSON.stringify(filesArray));
+
+                                // If you need to append the files individually as well
+                                // files.forEach(function(file, index) {
+                                //     formData.append('file' + index, file);
+                                // });
+                            });
+
+    
+                            myDropzone.on("successmultiple", function(files, response) {
+                                alert('Page and images uploaded successfully!');
+                                // Optionally, redirect or update the page content
+                            });
+    
+                            myDropzone.on("errormultiple", function(files, response) {
+                                console.error('Error:', response);
+                                alert('An error occurred while uploading the images.');
+                            });
+                        }
+                    },
+                    attr = (opt) ? extend(def, opt) : def;
+                    $(this).addClass('dropzone').dropzone(attr);
+                });
+            }
+        };
+    
+        // Dropzone Init @v1.0
+        NioApp.Dropzone.init = function() {
+            NioApp.Dropzone('.upload-zone');
+        };
+    
+        // Initialize Dropzone
+        $(document).ready(function() {
+            NioApp.Dropzone.init();
+        });
+    </script>
+
+
+<script>
+    let speakers = [];
+
+
+       // Initialize Quill editor
+    //    var quill = new Quill('#editor-container', {
+    //   theme: 'snow'
+    // });
+
+    function parseDate(dateString) {
+    const [day, month, year] = dateString.split('-');
+    return `${year}-${month}-${day}`;
+  }
+
+    // function logout() {
+    //     localStorage.removeItem("token");
+    //     window.location.href = '/login';
+    // }
+
+
+
+
+function addSpeaker(event) {
+    event.preventDefault()
+
+    const formData = new FormData(document.getElementById('--js-speaker-form'));
+    const parsedFormData = Object.fromEntries(formData.entries())
+
+    speakers.push(parsedFormData);
+
+    updateSpeakersTable();
+}
+
+
+        // Update the speakers table
+function updateSpeakersTable() {
+    const list = document.getElementById('--js-speakers-list');
+    list.innerHTML = '';
+
+    speakers.forEach((speaker, index) => {
+        const row = document.createElement('li');
+        const listItem = `
+                    <li class="nk-activity-item">
+                        <div class="nk-activity-media user-avatar bg-success"><img src="./images/avatar/c-sm.jpg" alt=""></div>
+                            <div class="nk-activity-data">
+                            <div class="label">${speaker.name}</div>
+                            <span class="time">${speaker.role}</span>
+                        </div>
+
+                                    <div class="drodown ms-auto">
+                                        <a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <ul class="link-list-opt no-bdr">
+                                                <li><a href="#"><em class="icon ni ni-edit"></em><span>Edit Speaker</span></a></li>
+                                                <li><a href="#" onclick="removeSpeaker(${index}); return false;"><em class="icon ni ni-trash-fill"></em><span>Delete Speaker</span></a></li>    
+                                                </ul>
+                                        </div>
+                                    </div>
+                                </li>
+        `;
+        list.insertAdjacentHTML('beforeend', listItem);
+    });
+}
+
+// Remove a speaker
+function removeSpeaker(index) {
+    speakers.splice(index, 1);
+    updateSpeakersTable();
+}
+
+    function add_event(event , myDropzone){
+        event.preventDefault()
+
+
+            // You can access form data using FormData object if needed
+            const formData = new FormData(document.getElementById('add-event-form'));
+
+            const parsedFormData = Object.fromEntries(formData.entries())
+            console.log('Form Data:', Object.fromEntries(formData.entries()));
+
+
+        let reqBody = {}
+        let fields = ['title', 'subtitle', 'body', 'description', 'type', 'date' , "time"]
+
+        for(let i = 0; i<fields.length; i++){
+            field = fields[i]
+            console.log(fields[i] , document.getElementById(field))
+
+            if(parsedFormData[field]) {
+                reqBody[field] = parsedFormData[field]
+            }
+            
+
+
+
+            // reqBody[field] = document.getElementById(field).value;
+        }
+
+
+
+        
+        // Prepare the form data
+        // var formData = new FormData(this);
+        // formData.set('date', formattedDate);
+
+
+        reqBody.body = $('#summernote').summernote('code');
+        reqBody.speakers = speakers
+        reqBody.date =  parseDate(reqBody.date);
+
+
+        console.log(reqBody)
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        var token = localStorage.getItem("token");
+        myHeaders.append('authorization', 'bearar '+token);
+        fetch('/api/event',{
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: myHeaders,
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(reqBody),
+        })
+        .then(response =>{
+            if(response.status != 200){
+                throw new Error("noPermissions");
+            }
+            return response.json()
+        })
+        .then(data => {
+                console.log(data);
+                alert("Event added successfully!");
+                window.location = "/events"
+
+                // myDropzone.processQueue();
+        })
+        .catch(error => {
+            if(error.message == 'noPermissions'){
+                alert("You are not permitted!");
+            }
+            else{
+                alert("Network Errors!");
+            }
+        });
+        return false;
+        
+    }
+
+
+
+
+        document.getElementById('--js-speaker-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            const formData = new FormData(this);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                let keys = key.split('[').map(k => k.replace(']', ''));
+                keys.reduce((acc, k, i) => {
+                    if (i === keys.length - 1) {
+                        acc[k] = value;
+                    } else {
+                        acc[k] = acc[k] || {};
+                    }
+                    return acc[k];
+                }, data);
+            });
+
+
+            console.log(data , "data")
+
+            // fetch('/your-backend-endpoint', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // })
+            // .then(response => response.json())
+            // .then(result => {
+            //     console.log('Success:', result);
+            // })
+            // .catch(error => {
+            //     console.error('Error:', error);
+            // });
+        });
+</script>
+
+    <!-- <script>
+        Dropzone.autoDiscover = false;
+    
+        NioApp.Dropzone = function(elm, opt) {
+            if ($(elm).exists()) {
+                $(elm).each(function() {
+                    var maxFiles = $(elm).data('max-files') || null;
+                    var maxFileSize = $(elm).data('max-file-size') || 256;
+                    var acceptedFiles = $(elm).data('accepted-files') || null;
+                    var def = {
+                        url: "/add-page",
+                        maxFiles: maxFiles,
+                        maxFilesize: maxFileSize,
+                        acceptedFiles: acceptedFiles,
+                        autoProcessQueue: false,
+                        uploadMultiple: true,
+                        parallelUploads: 5,
+                        addRemoveLinks: true,
+                        init: function() {
+                            var myDropzone = this;
+    
+                            // Handle form submission
+                            $('#addPageForm').submit(function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                
+                                myDropzone.processQueue();
+                            });
+    
+                            myDropzone.on("sendingmultiple", function(files, xhr, formData) {
+                                // Append all form inputs to the formData object
+                                var data = $('#addPageForm').serializeArray();
+                                $.each(data, function(key, el) {
+                                    formData.append(el.name, el.value);
+                                });
+                            });
+    
+                            myDropzone.on("successmultiple", function(files, response) {
+                                alert('Page and images uploaded successfully!');
+                                // Optionally, redirect or update the page content
+                            });
+    
+                            myDropzone.on("errormultiple", function(files, response) {
+                                console.error('Error:', response);
+                                alert('An error occurred while uploading the images.');
+                            });
+                        }
+                    },
+                    attr = (opt) ? extend(def, opt) : def;
+                    $(this).addClass('dropzone').dropzone(attr);
+                });
+            }
+        };
+    
+        // Dropzone Init @v1.0
+        NioApp.Dropzone.init = function() {
+            NioApp.Dropzone('.upload-zone');
+        };
+    
+        // Initialize Dropzone
+        $(document).ready(function() {
+            NioApp.Dropzone.init();
+        });
+    </script> -->
+    <!-- <script>
+        Dropzone.autoDiscover = false;
+    
+        NioApp.Dropzone = function(elm, opt) {
+            if ($(elm).exists()) {
+                $(elm).each(function() {
+                    var maxFiles = $(elm).data('max-files') || null;
+                    var maxFileSize = $(elm).data('max-file-size') || 256;
+                    var acceptedFiles = $(elm).data('accepted-files') || null;
+                    var def = {
+                        url: "/upload-image",
+                        maxFiles: maxFiles,
+                        maxFilesize: maxFileSize,
+                        acceptedFiles: acceptedFiles,
+                        autoProcessQueue: false,
+                        addRemoveLinks: true,
+                        init: function() {
+                            var myDropzone = this;
+    
+                            // Handle form submission
+                            $('#addPageForm').submit(function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                
+                                myDropzone.processQueue();
+                            });
+    
+                            myDropzone.on("sending", function(file, xhr, formData) {
+                                // Append all form inputs to the formData object
+                                var data = $('#addPageForm').serializeArray();
+                                $.each(data, function(key, el) {
+                                    formData.append(el.name, el.value);
+                                });
+                            });
+    
+                            myDropzone.on("success", function(file, response) {
+                                alert('Page and image uploaded successfully!');
+                                // Optionally, redirect or update the page content
+                            });
+    
+                            myDropzone.on("error", function(file, response) {
+                                console.error('Error:', response);
+                                alert('An error occurred while uploading the image.');
+                            });
+                        }
+                    },
+                    attr = (opt) ? extend(def, opt) : def;
+                    $(this).addClass('dropzone').dropzone(attr);
+                });
+            }
+        };
+    
+        // Dropzone Init @v1.0
+        NioApp.Dropzone.init = function() {
+            NioApp.Dropzone('.upload-zone');
+        };
+    
+        // Initialize Dropzone
+        $(document).ready(function() {
+            NioApp.Dropzone.init();
+        });
+    </script> -->
+</body>
+
+</html>

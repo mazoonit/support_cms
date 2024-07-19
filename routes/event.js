@@ -69,7 +69,9 @@ router.get("/", async (req, res, next) => {
             lt: params.end_date ? new Date(params.end_date) : undefined
         }
       },
-      include:{event_speakers: {include: {speaker: true}}}
+      include: {
+        speakers: true,
+      },
     });
     res.send(events);
   }
