@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/sm-favicon.png">
     <!-- Page Title  -->
-    <title>Login | DashLite Admin Template</title>
+    <title>Login | SphereMail Admin Dashboard</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="assets/css/dashlite.css?ver=3.1.2">
-    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css?ver=3.1.2">
+    <link rel="stylesheet" href="assets/css/dashlite.css">
+    <link id="skin-default" rel="stylesheet" href="assets/css/theme.css">
 </head>
 
 <body class="nk-body npc-default pg-auth">
@@ -29,8 +29,8 @@
                             <div class="nk-block nk-block-middle nk-auth-body">
                                 <div class="brand-logo pb-5">
                                     <a href="html/index.html" class="logo-link">
-                                        <img class="logo-light logo-img logo-img-lg" src="images/logo.png" srcset="images/logo2x.png 2x" alt="logo">
-                                        <img class="logo-dark logo-img logo-img-lg" src="images/logo-dark.png" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
+                                        <img class="logo-light logo-img logo-img-lg" src="images/sm-logo.png" srcset="images/logo2x.png 2x" alt="logo">
+                                        <img class="logo-dark logo-img logo-img-lg" src="images/sm-logo.png" srcset="images/logo-dark2x.png 2x" alt="logo-dark">
                                     </a>
                                 </div>
                                 <div class="nk-block-head">
@@ -118,7 +118,7 @@
             .then(data => {
                     localStorage.setItem('token', data.token);
                     window.location.href = '/events';
-                    alert("Restarted successfully!");
+                    alert("Login successfully!");
             })
             .catch(error => {
                 if(error.message == 'noPermissions'){
