@@ -74,6 +74,18 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.post("/createWithImage", upload.single("file"), async (req, res, next)=>{
+  try{
+    req.body.user = req.user;
+    req.body.image_path = req.fileName;
+    let speaker = await speaker_service.create_speaker(req.body);
+    res.send(speaker);
+  }
+  catch(e) {
+    next(e);
+  }
+});
+
 router.put("/", async (req, res, next) => {
   try {
     req.body.user = req.user;
